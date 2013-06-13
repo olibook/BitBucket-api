@@ -112,3 +112,19 @@ class Repository(object):
                         zip_archive.write(temp_file.name, prefix + name)
             return (True, archive.name)
         return (False, 'Could not archive your project.')
+    
+    def create_deployment_key(self, key, label, repo_slug=None):
+        """
+        create deployment key https://confluence.atlassian.com/display/BITBUCKET/deploy-keys+Resource
+        """
+        repo_slug = repo_slug or self.bitbucket.repo_slug or ''
+        url = self.bitbucket.url('DEPLOYMENT_KEYS', username=self.bitbucket.username, repo_slug=repo_slug)
+        data = {
+            'key': key,
+            'label': label,
+        }
+        return self.bitbucket.dispatch('POST', url, auth=self.bitbucket.auth, **data)
+    def list_deployment_keys(self, repo_slug=None):
+        repo_slug = repo_slug or self.bitbucket.repo_slug or ''
+        url = self.bitbucket.url('DEPLOYMENT_KEYS', username=self.bitbucket.username, repo_slug=repo_slug)
+        return self.bitbucket.dispatch('GET', url, auth=self.bitbucket.auth)

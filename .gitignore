@@ -16,3 +16,5 @@ build/
 
 # Ignore doc generated files
 docs/_build/
+*.egg-info
+.Python

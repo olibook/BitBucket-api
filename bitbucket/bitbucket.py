@@ -29,7 +29,7 @@ URLS = {
     # Get tags & branches
     'GET_TAGS': 'repositories/%(username)s/%(repo_slug)s/tags/',
     'GET_BRANCHES': 'repositories/%(username)s/%(repo_slug)s/branches/',
-
+    'DEPLOYMENT_KEYS': 'repositories/%(username)s/%(repo_slug)s/deploy-keys/',
     'REQUEST_TOKEN': 'oauth/request_token/',
     'AUTHENTICATE': 'oauth/authenticate?oauth_token=%(token)s',
     'ACCESS_TOKEN': 'oauth/access_token/'
